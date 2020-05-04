@@ -1,0 +1,49 @@
+{
+  "name": "judge-board-srv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-ts": "^5.0.5"
+  },
+  "devDependencies": {
+    "@types/eslint": "^6.8.0",
+    "@types/express": "^4.17.6",
+    "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.5.4",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "node dist/server.js",
+    "build": "npm run lint && npm run build-ts",
+    "build-ts": "tsc",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon dist/server.js",
+    "debug": "npm run build && npm run watch-debug",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --fix",
+    "test": "jest --forceExit --coverage --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxspec/judge-board-srv.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zxspec/judge-board-srv/issues"
+  },
+  "homepage": "https://github.com/zxspec/judge-board-srv#readme"
+}
